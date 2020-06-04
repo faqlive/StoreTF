@@ -1,4 +1,4 @@
-package store.model;
+package storemanagment.model;
 
 /**
  *

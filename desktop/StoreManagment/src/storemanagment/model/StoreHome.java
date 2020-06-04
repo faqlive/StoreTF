@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package store.model;
+package storemanagment.model;
+
+import java.util.Objects;
 
 /**
  *
@@ -57,7 +59,28 @@ public class StoreHome {
     public String toString() {
         return "StoreHome{" + "idStore=" + idStore + ", nameStore=" + nameStore + ", idLocation=" + idLocation + '}';
     }
-    
-    
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final StoreHome other = (StoreHome) obj;
+        if (this.idStore != other.idStore) {
+            return false;
+        }
+        if (!Objects.equals(this.nameStore, other.nameStore)) {
+            return false;
+        }
+        return true;
+    }    
 }

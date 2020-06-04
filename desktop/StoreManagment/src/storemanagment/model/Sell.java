@@ -1,4 +1,4 @@
-package store.model;
+package storemanagment.model;
 
 import java.time.LocalDate;
 
@@ -10,6 +10,8 @@ public class Sell {
     private int idSell;
     private int idProduct;
     private int idStore;
+    // agregar cantidad de productos
+    // precio final
     private LocalDate date;
 
     public Sell() {

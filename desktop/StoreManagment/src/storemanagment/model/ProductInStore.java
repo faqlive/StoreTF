@@ -1,10 +1,12 @@
-package store.model;
+package storemanagment.model;
+
+import java.io.Serializable;
 
 /**
  *
  * @author FAQ
  */
-public class ProductInStore {
+public class ProductInStore implements Serializable {
     private int idStrore;
     private int idProduct;
     private int stock;

@@ -1,4 +1,4 @@
-package store.model;
+package storemanagment.model;
 
 /**
  *
@@ -58,8 +58,19 @@ public class Product {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        return hash;
+        final int prime = 7;
+        int hash = 0;
+        char[] name = this.nameProduct.toCharArray();
+        if (this.idProduct !=0) {
+            int num=0;
+                    for(char i :name){
+                 num = num + i;
+            }
+            hash = num;
+        }else{
+            hash = this.idProduct;
+        }
+        return hash*prime;
     }
 
     @Override
@@ -76,4 +87,5 @@ public class Product {
         }
         return true;
     }
+
 }
