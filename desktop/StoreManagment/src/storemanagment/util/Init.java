@@ -158,7 +158,6 @@ public class Init {
                 
             }
         }
-        System.out.println(hashSetPis.toString());
         return hashSetPis;
     }
 }
