@@ -51,7 +51,9 @@ public class ProductInStore implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        String idP = String.valueOf(this.idProduct);
+        String idS = String.valueOf(this.idStrore);
+        int hash = Integer.valueOf(idP.concat(idS));
         return hash;
     }
 
@@ -60,7 +62,7 @@ public class ProductInStore implements Serializable {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (ProductInStore.class != obj.getClass()) {
             return false;
         }
         final ProductInStore other = (ProductInStore) obj;

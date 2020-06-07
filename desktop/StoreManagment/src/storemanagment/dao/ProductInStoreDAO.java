@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import storemanagment.ddbb.IConexion;
 import storemanagment.generic.GenericDao;
+import storemanagment.hand.ExceptionPISdao;
 import storemanagment.interfaces.IPisDao;
 import storemanagment.model.Product;
 import storemanagment.model.ProductInStore;
@@ -38,7 +39,7 @@ public class ProductInStoreDAO extends GenericDao implements IPisDao {
     }
 
     @Override
-    public void save(ProductInStore entity) {
+    public void save(ProductInStore entity){
         try {
             statement = conexion.prepareStatement("INSERT INTO products_stores (idProduct,idStore,stock) VALUES (?,?,?)");
             statement.setInt(1, entity.getIdProduct());
@@ -46,7 +47,7 @@ public class ProductInStoreDAO extends GenericDao implements IPisDao {
             statement.setInt(3,entity.getStock());
             statement.execute();
         } catch (SQLException ex) {
-            Logger.getLogger(ProductInStoreDAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getErrorCode()); 
         }finally{
             try {
                 conexion.close();
@@ -78,7 +79,7 @@ public class ProductInStoreDAO extends GenericDao implements IPisDao {
 
     @Override
     public ProductInStore get(ProductInStore entity) {
-        ProductInStore pis = new ProductInStore();
+        ProductInStore pis = null;
         try {
             statement = conexion.prepareStatement("SELECT * FROM products_stores WHERE idProduct = ?"
                                                  + "AND idStore = ?");
@@ -86,6 +87,7 @@ public class ProductInStoreDAO extends GenericDao implements IPisDao {
             statement.setInt(2,entity.getIdStrore());
             resultado = statement.executeQuery();
             while(resultado.next()){
+                pis = new ProductInStore();
                 pis.setIdProduct(resultado.getInt("idProduct"));
                 pis.setIdStrore(resultado.getInt("idStore"));
                 pis.setStock(resultado.getInt("stock"));
@@ -108,8 +110,9 @@ public class ProductInStoreDAO extends GenericDao implements IPisDao {
         try {
             statement = conexion.prepareStatement("SELECT * FROM products_stores ");
             statement.executeQuery();
-            ProductInStore pis = new ProductInStore();
+            ProductInStore pis = null;
             while(resultado.next()){
+                pis = new ProductInStore();
                 pis.setIdProduct(resultado.getInt("idProduct"));
                 pis.setIdStrore(resultado.getInt("idStore"));
                 pis.setStock(resultado.getInt("stock"));
@@ -126,14 +129,16 @@ public class ProductInStoreDAO extends GenericDao implements IPisDao {
         }
         return listPis;
     }
+    
     public List<ProductInStore> getAllFromStore(Integer idStore) {
         List<ProductInStore> listPis = new ArrayList<>();
         try {
             statement = conexion.prepareStatement("SELECT * FROM products_stores WHERE idStore = ? ");
             statement.setInt(1, idStore);
             statement.executeQuery();
-            ProductInStore pis = new ProductInStore();
+            ProductInStore pis = null;
             while(resultado.next()){
+                pis = new ProductInStore();
                 pis.setIdProduct(resultado.getInt("idProduct"));
                 pis.setIdStrore(resultado.getInt("idStore"));
                 pis.setStock(resultado.getInt("stock"));
@@ -150,14 +155,16 @@ public class ProductInStoreDAO extends GenericDao implements IPisDao {
         }
         return listPis;
     }
+    
     public List<ProductInStore> getAllStock(Integer idProduct) {
         List<ProductInStore> listPis = new ArrayList<>();
         try {
             statement = conexion.prepareStatement("SELECT * FROM products_stores WHERE idProduct = ? ");
             statement.setInt(1, idProduct);
             statement.executeQuery();
-            ProductInStore pis = new ProductInStore();
+            ProductInStore pis = null;
             while(resultado.next()){
+                pis = new ProductInStore();
                 pis.setIdProduct(resultado.getInt("idProduct"));
                 pis.setIdStrore(resultado.getInt("idStore"));
                 pis.setStock(resultado.getInt("stock"));
@@ -182,8 +189,9 @@ public class ProductInStoreDAO extends GenericDao implements IPisDao {
             statement = conexion.prepareStatement("SELECT * FROM products_stores WHERE stock >= ? ");
             statement.setInt(1, stock);
             statement.executeQuery();
-            ProductInStore pis = new ProductInStore();
+            ProductInStore pis = null;
             while(resultado.next()){
+                pis = new ProductInStore();
                 pis.setIdProduct(resultado.getInt("idProduct"));
                 pis.setIdStrore(resultado.getInt("idStore"));
                 pis.setStock(resultado.getInt("stock"));
