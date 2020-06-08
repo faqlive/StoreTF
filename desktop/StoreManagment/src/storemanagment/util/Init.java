@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import storemanagment.hand.ExceptionPISdao;
+import storemanagment.ddbb.CleanDDBB;
 import storemanagment.interfaces.IServiceLocation;
 import storemanagment.interfaces.IServicePis;
 import storemanagment.interfaces.IServiceProduct;
@@ -35,6 +35,9 @@ public class Init {
 
      
     public void initialization(){
+        // truncar bases de datos.
+        new CleanDDBB().cleanAll();
+        
         IServiceStoreHome storeService = new StoreHomeService();
         initStores().stream().forEach(store -> storeService.save(store));
         //  inicializar porducto.
@@ -46,6 +49,7 @@ public class Init {
         // Inicialzar Stock almacentes.
         IServicePis servicePis = new PisService();
         fillInStore().stream().forEach(pis -> servicePis.save(pis));
+        
     }
     
     private static List<Sell> initSells(){
