@@ -5,7 +5,6 @@
  */
 package storemanagment.dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,9 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import storemanagment.ddbb.IConexion;
 import storemanagment.generic.GenericDao;
-import storemanagment.hand.ExceptionPISdao;
 import storemanagment.interfaces.IPisDao;
-import storemanagment.model.Product;
 import storemanagment.model.ProductInStore;
 
 

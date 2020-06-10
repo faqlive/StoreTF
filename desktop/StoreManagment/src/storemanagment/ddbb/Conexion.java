@@ -32,7 +32,6 @@ public class Conexion implements IConexion {
 		return new Conexion();
 	}
 
-	
 	@Override
 	public Connection conectBBDD() throws SQLException {
 		if (conn == null || conn.isClosed()) {

@@ -38,7 +38,6 @@ public class InitDataController implements Initializable {
 
     @FXML
     private void clck(ActionEvent event) {
-        new Init().initialization();
     }
 
     @FXML
