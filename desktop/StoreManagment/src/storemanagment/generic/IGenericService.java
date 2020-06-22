@@ -20,4 +20,4 @@ public interface IGenericService <T, ID extends Serializable, FK>{
     T get(ID id);
     List<T> getAll();
     List<T> getAllForangeKey(FK fkey);
-}
+} 

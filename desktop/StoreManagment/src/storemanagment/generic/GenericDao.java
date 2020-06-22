@@ -15,7 +15,6 @@ import storemanagment.ddbb.IConexion;
  */
 public class GenericDao {
     protected Connection conexion;
-
 	public GenericDao(IConexion conexion) {
 		super();
 		try {
@@ -23,6 +22,5 @@ public class GenericDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-    
+	}   
 }
