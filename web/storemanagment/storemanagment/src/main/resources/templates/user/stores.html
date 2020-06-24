@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>STORES</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+    <h1>Listado de Almacenes</h1>
+    <p>Gestionando Almacenes</p>
+    <ul>
+        <li>Go to the <a href="/" th:href="@{/homemenu}">Home</a></li>
+    </ul>
+    <div>
+    	<table class="table text-center">
+		  <thead class="thead-dark">
+		    <tr>
+		      
+		      <th scope="col">COD</th>
+		      <th scope="col">NOMBRE</th>
+		      <th scope="col">LOCALIDAD</th>
+		      <th scope="col"></th>
+		    </tr>
+		  </thead>
+		  <tbody >		    
+		    <tr th:each="store : ${listStore}">
+		      <th scope="row" th:text="${store.idStore}"></th>
+		      <td th:text="${store.nameStore}"></td>
+		      <td th:text="${store.idLocation}"></td>
+		      <td><a href="/" th:href="@{'/PIS/store/' + ${store.idStore}}">VISITAR</a></td>      
+		    </tr>
+		  </tbody>
+		</table>
+    </div>
+</div>
+</body>
+</html>
+
+

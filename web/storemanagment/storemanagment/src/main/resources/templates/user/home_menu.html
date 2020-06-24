@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>HOME MENU</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+    <h1>Home menu STORE</h1>
+    <p>Gestionando los pedidos de tu tienda online</p>
+    <ul>
+        <li>Go to the <a href="/" th:href="@{/}">Inicio</a></li>
+		<li>Go to the <a href="/" th:href="@{/StoreHome/stores}">Listado Amacenes</a></li>
+        <li>Go to the <a href="/" th:href="@{/sales_form}">Ventas</a></li>
+        <li>Go to the <a href="/" th:href="@{/rewind/list_user}">Comprar</a></li>
+        <li>Go to the <a href="/" th:href="@{/rewind/list_user}">Informe</a></li>
+    </ul>
+    
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+h1 {
+    color: #78ab46;
+}
+header{
+	margin-top:0px;
+	background-color: #ccc;
+	width: 100%;
+}
+.navbar-brand img{
+	height: 80px;
+	width: 80px;
+}
+
+main{
+	margin-bottom: 10vh;
+}
+
+footer {
+    position: fixed;
+    height: 8vh;
+    bottom: 0;
+    width: 100%;
+    background-color: #ccc
+}
+
+footer p {
+	position: relative;
+    padding: 15px;
+    width: 50%;
+    display: inline-block;
+}
+footer p.logInfo{
+	float:right;
+}

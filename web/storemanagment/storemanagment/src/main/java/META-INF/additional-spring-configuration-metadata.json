@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "srping.thymeleaf.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'srping.thymeleaf.enabled'"
+  },
+  {
+    "name": "srping.thymeleaf.content-type",
+    "type": "java.lang.String",
+    "description": "A description for 'srping.thymeleaf.content-type'"
+  }
+]}

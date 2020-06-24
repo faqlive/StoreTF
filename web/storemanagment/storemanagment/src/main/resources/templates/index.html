@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>HOME</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+    <h1>Bienvenido a Store</h1>
+    <p>Gestionando los pedidos de tu tienda online</p>
+    
+    <h2 sec:authorize="isAuthenticated()"> TODAVIA NO ESTAS REGISTRADO </h2>
+    
+    <ul>
+        <li>Go to the <a href="/" th:href="@{/homemenu}">Almacenes</a></li>
+        <li>Go to the <a href="/" th:href="@{/sales_form}">Ventas</a></li>
+        <li>Go to the <a href="/" th:href="@{/rewind/list_user}">Comprar</a></li>
+        <li>Go to the <a href="/" th:href="@{/rewind/list_user}">Informe</a></li>
+    </ul>
+    
+</div>
+</body>
+</html>
