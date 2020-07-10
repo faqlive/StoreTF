@@ -8,18 +8,23 @@
 </head>
 <body>
 <div layout:fragment="content" th:remove="tag">
-    <h1>Bienvenido a Store</h1>
-    <p>Gestionando los pedidos de tu tienda online</p>
+    <h1>Bienvenido a su GESTOR DE ALMACENES</h1>
+    <p>Gestionando los productos y pedidos de tu tienda online</p>
     
-    <h2 sec:authorize="isAuthenticated()"> TODAVIA NO ESTAS REGISTRADO </h2>
+    <div sec:authorize="isAnonymous()">
+    	<h3> TODAVIA NO ESTAS REGISTRADO </h3>
+	    <ul>
+	        <li>Go to the <a href="/" th:href="@{/login}">LogIn</a></li>
+	
+	    </ul>
+    </div>
     
+    <div sec:authorize="isAuthenticated()">  
     <ul>
-        <li>Go to the <a href="/" th:href="@{/homemenu}">Almacenes</a></li>
-        <li>Go to the <a href="/" th:href="@{/sales_form}">Ventas</a></li>
+        <li>Go to the <a href="/" th:href="@{/homemenu}">Panel de Gesti&oacute;n</a></li>
         <li>Go to the <a href="/" th:href="@{/rewind/list_user}">Comprar</a></li>
-        <li>Go to the <a href="/" th:href="@{/rewind/list_user}">Informe</a></li>
     </ul>
-    
+    </div>
 </div>
 </body>
 </html>

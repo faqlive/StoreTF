@@ -19,6 +19,7 @@
 		      <th scope="col">CODIGO</th>
 		      <th scope="col">PRODUCTO</th>
 		      <th scope="col">STOCK</th>
+		      <th scope="col">PRECIO</th>
 		      <th scope="col"></th>
 		    </tr>
 		  </thead>
@@ -27,10 +28,22 @@
 		      <th scope="row" th:text="${pis.key.idProduct}"></th>
 		      <td th:text="${pis.key.nameProduct}"></td>
 		      <td th:text="${pis.value}"></td>
+		      <td th:text="|${pis.key.priceProduct}  &euro;|"></td>
 		      <td><a href="/" th:href="@{/}">Otra Cosa</a></td>      
 		    </tr>
 		  </tbody>
+		  <tfoot>
+		    <tr class="table-active">
+		    	<td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+		    </tr>
+		</tfoot>
 		</table>
+		
+		<div th:insert=" fragments/pagination :: pagination(${listPage}, '/PIS/store/'+${idStore}+'/?', ${lastPage}, ${curretPage})"></div>
     </div>
 </div>
 </body>

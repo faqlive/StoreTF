@@ -1,17 +1,13 @@
 package com.fjl.storemanagment.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fjl.storemanagment.service.StoreService;
 
 @Controller
 public class InitController {
 
-	@Autowired
-	private StoreService serviceStore;	
+
 	
 	@RequestMapping("/")
     public String index() {
@@ -22,16 +18,16 @@ public class InitController {
     public String login() {
         return "login";
     }
+	@RequestMapping("/access-denied")
+	public String error() {
+        return "error/access-denied";
+    }
 	
 	@RequestMapping("/homemenu")
 	public String homemenu() {
 		return "user/home_menu";
 	}
 	
-	@RequestMapping("/sales_form")
-	public String sales(Model model) {
-		model.addAttribute("listStore",serviceStore.getAll());
-		return "user/sales_form";
-	}
+
 	
 }

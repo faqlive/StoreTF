@@ -1,9 +1,11 @@
 package com.fjl.storemanagment.generic;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 
 
@@ -27,13 +29,19 @@ public abstract class GenericService<T, ID extends Serializable, FK> implements 
 	}
 
 	@Override
-	public List<T> getAll() {
-		List<T> returnList = new ArrayList<>();
-		getDao().findAll().forEach(obj -> returnList.add(obj));
-		return returnList;
+	public Page<T> getAll(Pageable paging) {	
+		return getDao().findAll(paging);
 	}
-
+	
+	@Override
+	public List<T> getAll(){
+		return getDao().findAll();
+	}
+	
+    
 	public abstract List<T> getAllForangeKey(FK forangeKey);
+
+	public abstract Page<T> getAllForangeKey(FK forangeKey, Pageable paging);
 
 	public abstract IGenericDao<T, ID, FK> getDao();
 	

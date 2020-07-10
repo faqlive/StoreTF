@@ -1,18 +1,19 @@
 package com.fjl.storemanagment.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="products", schema ="store")
-@Data @AllArgsConstructor @NoArgsConstructor
+@Data
 public class Product implements Comparable<Product>{
 
 	@Id
@@ -21,7 +22,13 @@ public class Product implements Comparable<Product>{
     private String nameProduct;
     private double priceProduct;
     
-    
+    @OneToMany(mappedBy = "product")
+    private Set<ProductInStore> stockedProduct = new HashSet<>();
+ /*   
+    @OneToMany
+    @JoinColumn(name="idProduct", nullable=false)
+    private Set<Sell> sell;
+  */  
     /**
      * 
      * Ordenación acendente por:
@@ -33,5 +40,37 @@ public class Product implements Comparable<Product>{
 		return Integer.compare(this.getIdProduct(), prod.getIdProduct());
 	}
 
+    public Product() {
+    	
+    }
+    
+    public Product(int idProduct, String nameProduct, double priceProduct) {
+    	this.idProduct = idProduct;
+    	this.nameProduct = nameProduct;
+    	this.priceProduct = priceProduct;
+    }
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		if (idProduct != other.idProduct)
+			return false;
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idProduct;
+		return result;
+	}
+    
     
 }

@@ -3,12 +3,13 @@ h1 {
 }
 header{
 	margin-top:0px;
+	margin-bottom:10px;
 	background-color: #ccc;
 	width: 100%;
 }
 .navbar-brand img{
-	height: 80px;
-	width: 80px;
+	height: 15vh;
+	width: 15vh;
 }
 
 main{

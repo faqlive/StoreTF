@@ -31,9 +31,6 @@ public class SecurityManager implements AccessDeniedHandler{
 	                    + " was trying to access protected resource: "
 	                    + request.getRequestURI());
 	        }
-
 	        response.sendRedirect(request.getContextPath() + "/access-denied");
-
 	    }
-
 }

@@ -8,7 +8,7 @@
             
            <p class="copy-rigth"> &copy; 2020 FJL.com, Inc <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
            <p class="logInfo" sec:authorize="isAuthenticated()" style="display: inline-block">
-                    | Logged user: <span sec:authentication="name">[[${#httpServletRequest.remoteUser}]]</span>   |
+                    | Logged user: <span sec:authentication="name">[${#httpServletRequest.remoteUser}]</span>   |
                     Roles: <span sec:authentication="principal.authorities"></span>   |
                     <a th:href="@{/logout}">Sign Out</a>
             </p>

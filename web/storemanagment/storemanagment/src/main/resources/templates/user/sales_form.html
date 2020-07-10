@@ -15,33 +15,39 @@
         
     </ul>
     
-    <form action="/Sales/listSales">
+    <form th:action="@{/Sales/listSales}" method="get">
     	<div class="form-group row">
     		<div class="form-group col-4">
 				<label for="example-date-input" class="col-2 col-form-label">Almacen</label>
 				<div class="col-10">
-					<select class="form-control" name="stores" id="stores" style="withd:100%" required>
-						<option value="TODOS" selected>TODOS</option>
-						<option th:each="store : ${listStore}" th:value="${store.nameStore}" 
+					<select class="form-control" name="idStore" id="idStore" style="withd:100%" required>
+						<option value="0" selected>TODOS</option>
+						<option th:each="store : ${listStore}" th:value="${store.idStore}" 
 							th:text="${store.nameStore}"></option>
 					</select>
 				</div>
 			</div>
   	 		<div class="form-group col-3">
-				<label for="example-date-input" class="col-2 col-form-label">Date</label>
+				<label for="example-date-input" class="col-2 col-form-label">Desde:</label>
 				<div class="col-10">
-		  			<input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+		  			<input class="form-control" type="date" value="2015-01-01" 
+		  			name="dateSince" id="dateSince" min="2015-01-01" max="2019-12-31">
 				</div>
 			</div>
 			<div class="form-group col-3">
-				<label for="example-date-input" class="col-2 col-form-label">Date</label>
+				<label for="example-date-input" class="col-2 col-form-label">Hasta:</label>
 				<div class="col-10">
-		  			<input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+		  			<input class="form-control" type="date" value="2019-12-31" 
+		  			name="dateUntil" id="dateUntil" max="2019-12-31">
 				</div>
 			</div>
-			
-			
-		</div><!-- fin from-grpup -->
+		</div>
+		<!-- fin from-grpup -->
+		<div class="form-group row">
+	         <div class="form-group col-sm-2 col-sm-offset-1">
+	            <input type="submit" class="form-control btn btn-info" value="Consultar">
+	        </div>
+        </div>
     </form>
     
 </div>

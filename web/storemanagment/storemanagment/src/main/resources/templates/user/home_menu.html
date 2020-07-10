@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       layout:decorate="~{fragments/layout}">
 <head>
     <title>HOME MENU</title>
@@ -11,9 +12,10 @@
     <p>Gestionando los pedidos de tu tienda online</p>
     <ul>
         <li>Go to the <a href="/" th:href="@{/}">Inicio</a></li>
-		<li>Go to the <a href="/" th:href="@{/StoreHome/stores}">Listado Amacenes</a></li>
-        <li>Go to the <a href="/" th:href="@{/sales_form}">Ventas</a></li>
-        <li>Go to the <a href="/" th:href="@{/rewind/list_user}">Comprar</a></li>
+		<li sec:authorize="hasRole('ADMIN')">Go to the <a href="/" th:href="@{/StoreHome/stores}">Listado Amacenes</a></li>
+		<li sec:authorize="hasRole('USER')">Go to the <a href="/" th:href="@{/StoreHome/stores}">Compra por almacen</a></li>
+        <li>Go to the <a href="/" th:href="@{/Sales/sales_form}">Consultas de Ventas</a></li>
+        <li>Go to the <a href="/" th:href="@{/Stock/form}">Reponer</a></li>
         <li>Go to the <a href="/" th:href="@{/rewind/list_user}">Informe</a></li>
     </ul>
     

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       layout:decorate="~{fragments/layout}">
 <head>
     <title>STORES</title>
@@ -28,10 +29,21 @@
 		      <th scope="row" th:text="${store.idStore}"></th>
 		      <td th:text="${store.nameStore}"></td>
 		      <td th:text="${store.idLocation}"></td>
-		      <td><a href="/" th:href="@{'/PIS/store/' + ${store.idStore}}">VISITAR</a></td>      
+		      <td sec:authorize="hasRole('USER')"><a href="/" th:href="@{'/PIS/store/' + ${store.idStore}}">COMPRAR</a></td>      
+		      <td sec:authorize="hasRole('ADMIN')"><a href="/" th:href="@{'/PIS/store/' + ${store.idStore}}">ENTRAR</a></td>  
 		    </tr>
 		  </tbody>
+		  <tfoot>
+		    <tr class="table-active">
+		    	<td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+		    </tr>
+		</tfoot>
 		</table>
+		
+<div th:insert=" fragments/pagination :: pagination(${listPage},  ${'/StoreHome/stores?'}, ${lastPage}, ${curretPage})"></div>
     </div>
 </div>
 </body>
