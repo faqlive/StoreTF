@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<th:block th:fragment="pagination(curretPage, mapping, lastPage, curretPage)">
+		<div th:if="${lastPage > 1}">
+	 	<!-- PAGINACION PARA MAS DE 5 PAGINAS -->	
+			<nav aria-label="Page navigation example" th:if="${lastPage > 5}">
+			  <ul class="pagination justify-content-center">    
+			    <li class="page-item" th:if="${curretPage > 0}" th:classappend="${curretPage == 0} ? disabled">
+           			<a class="page-link" 
+           			th:href="@{|${mapping}pageNo=${curretPage -1}|}" href=""> < Prev </a>
+		       </li>
+		       <li class="page-item" th:classappend="${curretPage == 0} ? disabled">
+		           <a class="page-link"
+		           th:href="@{|${mapping}pageNo=0|}">
+		           <span>1</span>
+		           </a>
+		       </li>
+		       <li class="page-item" th:if="${curretPage >= 4}">
+		          <a class="page-link">...</a>
+		       </li>
+		       <li class="page-item" th:each="page : ${#numbers.sequence(firstValue+1 ,lastValue-2)}" 
+		       th:classappend="${curretPage == page} ? disabled">
+		           <a class="page-link" 
+		           th:href="@{|${mapping}pageNo=${page}|}" >
+		           <span th:text="${page+1}"></span>
+		           </a>
+		       </li>
+		       <li class="page-item disabled" th:if="${curretPage <= (lastPage - 4)}">
+		           <a class="page-link">...</a>
+		       </li>
+		       <li class="page-item" th:classappend="${curretPage == lastPage-1} ? disabled">
+		           <a class="page-link"
+		           th:href="@{|${mapping}pageNo=${lastPage-1}|}">
+		           <span th:text="${lastPage}"></span>
+		           </a>
+		       </li>
+		       <li class="page-item" th:if="${curretPage < (lastPage - 1)}">
+		           <a class="page-link" 
+		           th:href="@{|${mapping}pageNo=${curretPage + 1}|}"> Next > </a>
+		       </li>	    
+			  </ul>
+			</nav>
+			<!-- CASO PARA MENOS DE 5 PAGINAS -->	
+			<nav aria-label="Page navigation example" th:if="${lastPage <= 5}">
+			  <ul class="pagination justify-content-center">
+			    
+			    <li class="page-item" th:if="${curretPage > 0}" th:classappend="${curretPage == 0} ? disabled">
+           			<a class="page-link" 
+           			th:href="@{|${mapping}pageNo=${curretPage -1}|}" href=""> < Prev </a>
+		       </li>
+		       <li class="page-item" th:classappend="${curretPage == 0} ? disabled">
+		           <a class="page-link"
+		           th:href="@{|${mapping}pageNo=0|}">
+		           <span>1</span>
+		           </a>
+		       </li>
+		       <li class="page-item" th:each="page : ${#numbers.sequence(firstValue+1,lastPage -1)}" 
+		       th:classappend="${curretPage == page} ? disabled">
+		           <a class="page-link" 
+		           th:href="@{|${mapping}pageNo=${page}|}" >
+		           <span th:text="${page+1}"></span>
+		           </a>
+		       </li>
+		       <li class="page-item" th:if="${curretPage < (lastPage - 1)}">
+		           <a class="page-link" 
+		           th:href="@{|${mapping}pageNo=${curretPage + 1}|}"> Next > </a>
+		       </li>
+			  </ul>
+			</nav>
+		</div>	
+<th:block >
+
+
+
+</body>
+</html>

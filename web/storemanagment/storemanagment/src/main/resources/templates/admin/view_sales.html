@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Consuta Ventas</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+  <!--   <h1>Almacen <span th:text="${store.nameStore}"></span></h1>  -->
+    <p>Consuta Ventas</p>
+    <ul>
+        <li>Volver al <a href="/" th:href="@{/Sales/sales_form}">Consulta Ventas</a></li>
+    </ul>
+    <div>
+    	<table class="table text-center">
+		  <thead class="thead-dark">
+		    <tr>
+		      <th scope="col">COD</th>
+		      <th scope="col">ALMACEN</th>
+		      <th scope="col">PRODUCTO</th>
+		      <th scope="col">FECHA</th>
+		    </tr>
+		  </thead>
+		  <tbody >		    
+		    <tr th:each="sell : ${mapSales}">
+		      <th scope="row" th:text="${sell.key.idSell}"></th>
+		      <td th:text="${sell.value.nameStore}"></td>
+		      <td th:text="${sell.key.sellProduct.idProduct}"></td>
+		      <td th:text="${sell.key.date}">Otra Cosa</td>      
+		    </tr>
+		  </tbody>
+	    <tfoot>
+		    <tr class="table-active">
+		    	<td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+		    </tr>
+		</tfoot>
+	</table>
+	
+	<div th:insert=" fragments/pagination :: pagination(${listPage} ,'/Sales/listSales?dateUntil='+${dateUntil}+'&dateSince='+${dateSince}+'&idStore='+${idStore}+'&', ${lastPage}, ${curretPage})"></div>
+    </div>
+</div>
+</body>
+</html>
