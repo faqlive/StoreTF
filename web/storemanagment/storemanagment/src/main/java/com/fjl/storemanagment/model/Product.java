@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
@@ -24,11 +25,11 @@ public class Product implements Comparable<Product>{
     
     @OneToMany(mappedBy = "product")
     private Set<ProductInStore> stockedProduct = new HashSet<>();
- /*   
+   
     @OneToMany
     @JoinColumn(name="idProduct", nullable=false)
     private Set<Sell> sell;
-  */  
+   
     /**
      * 
      * Ordenación acendente por:

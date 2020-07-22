@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import storemanagment.ddbb.CleanDDBB;
+import storemanagment.hand.ExceptionNoDB;
 import storemanagment.interfaces.IServiceLocation;
 import storemanagment.interfaces.IServicePis;
 import storemanagment.interfaces.IServiceProduct;
@@ -36,6 +37,8 @@ public class Init {
      
     public void initialization(){
         // truncar bases de datos.
+        
+        try{
         new CleanDDBB().cleanAll();
         
         IServiceStoreHome storeService = new StoreHomeService();
@@ -49,6 +52,9 @@ public class Init {
         // Inicialzar Stock almacentes.
         IServicePis servicePis = new PisService();
         fillInStore().stream().forEach(pis -> servicePis.save(pis));
+        }catch(ExceptionNoDB endb){
+            // TODO Mostrar error de falta de base de datos.
+        }
         
     }
     
@@ -73,7 +79,7 @@ public class Init {
             store = listStore.get(random.nextInt(listStore.size()));
             sell.setIdStore(store.getIdStore()); 
             // -------------- RAMOM PRODuCT
-            product = listProduct.get(random.nextInt(listProduct.size()));;
+            product = listProduct.get(random.nextInt(listProduct.size()));
             sell.setIdProduct(product.getIdProduct());
             /*
             double priceProduct = product.getPricePrduct();

@@ -42,7 +42,11 @@ public class ProductInStore implements Serializable {
     	this.store.setIdStore(idStore);
     	this.stock = stock;    	
     }
-    
+    public ProductInStore (Product product, StoreHome store, Integer stock){
+    	this();
+    	this.store = store;
+    	this.product = product;
+    }
     public ProductInStore (PisID id, Integer stock){
     	this();
     	this.id = id;

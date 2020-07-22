@@ -8,6 +8,7 @@ package storemanagment.generic;
 import java.sql.Connection;
 import java.sql.SQLException;
 import storemanagment.ddbb.IConexion;
+import storemanagment.hand.ExceptionNoDB;
 
 /**
  *
@@ -15,12 +16,13 @@ import storemanagment.ddbb.IConexion;
  */
 public class GenericDao {
     protected Connection conexion;
-	public GenericDao(IConexion conexion) {
+	public GenericDao(IConexion conexion) throws ExceptionNoDB {
 		super();
 		try {
 			this.conexion = conexion.conectBBDD();
 		} catch (SQLException e) {
 			e.printStackTrace();
+                        throw new ExceptionNoDB();
 		}
 	}   
 }

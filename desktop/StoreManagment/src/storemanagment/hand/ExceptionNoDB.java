@@ -9,11 +9,11 @@ package storemanagment.hand;
  *
  * @author FAQ
  */
-public class ExceptionPISdao extends Exception {
+public class ExceptionNoDB extends Exception {
     
-    public ExceptionPISdao(){}
+    public ExceptionNoDB(){}
     
-    public ExceptionPISdao(String msj){
+    public ExceptionNoDB(String msj){
         super(msj);
     }
     

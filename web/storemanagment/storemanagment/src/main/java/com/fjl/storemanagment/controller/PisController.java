@@ -37,7 +37,7 @@ public class PisController {
 	private ProductService serviceProduct;
 	
 	@GetMapping("/store/{idStore}")
-	public String save (Model model, @PathVariable("idStore") Integer idStore,
+	public String list (Model model, @PathVariable("idStore") Integer idStore,
 			@RequestParam("pageNo") Optional<Integer> pageNo,
 			@RequestParam(value = "pageSize",required = false) Optional<Integer> pageSize ) {
 		

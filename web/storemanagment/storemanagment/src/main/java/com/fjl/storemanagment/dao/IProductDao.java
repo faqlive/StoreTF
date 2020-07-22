@@ -7,5 +7,6 @@ import com.fjl.storemanagment.model.Product;
 
 @Repository
 public interface IProductDao extends IGenericDao<Product, Integer, String>{
+	
 
 }

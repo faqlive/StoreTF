@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import storemanagment.hand.ExceptionNoDB;
 
 /**
  *
@@ -24,13 +25,14 @@ public class CleanDDBB {
     private static final String SQL_trunc = "TRUNCATE ";
     private static final String[] tables = {"products", "products_stores","sales","storehouse","location"};
 
-    public CleanDDBB() {
+    public CleanDDBB() throws ExceptionNoDB {
             super();
             try {
                 IConexion conexion = Conexion.getInstace();
                 this.conexion = conexion.conectBBDD();
             } catch (SQLException e) {
                     e.printStackTrace();
+                   throw new ExceptionNoDB();
             }
     }
     

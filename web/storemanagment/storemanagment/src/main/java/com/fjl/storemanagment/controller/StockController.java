@@ -41,13 +41,12 @@ public class StockController {
 		if(idStore != 0 && idProduct != 0) {
 			ProductInStore pis = new ProductInStore(new PisID(idStore,idProduct),quantity);
 			
-			msg=servicePis.saveOrUpdate(pis);
-			
+			msg=servicePis.saveOrUpdate(pis);			
 			pis = servicePis.get(new PisID(idStore,idProduct));
 			pis.setProduct(serviceProduct.get(idProduct));
 			pis.setStore(serviceStore.get(idStore));
 			model.addAttribute("pis",pis);
-		}else if (idStore != 0 || idProduct != 0) {
+		}else if (idStore == 0 || idProduct == 0) {
 			
 		}
 

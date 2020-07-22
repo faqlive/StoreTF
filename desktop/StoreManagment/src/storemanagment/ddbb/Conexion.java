@@ -6,7 +6,6 @@
 package storemanagment.ddbb;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexion implements IConexion {
@@ -37,7 +36,7 @@ public class Conexion implements IConexion {
 		if (conn == null || conn.isClosed()) {
 			switch(source) {
 			case MySQL:
-				conn = MySQLConexion.getConexion();
+                            conn = MySQLConexion.getConexion();
 				break;
 			case ORACLE:
 				conn = OracleConexion.getConexion();

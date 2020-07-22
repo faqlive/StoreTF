@@ -9,8 +9,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -20,16 +22,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                    .antMatchers(
-                            "/",
-                            "/js/**",
+        
+    	 http.sessionManagement()
+         .sessionCreationPolicy(SessionCreationPolicy.ALWAYS).and()
+         			.authorizeRequests()
+                    .antMatchers("/js/**",
                             "/css/**",
                             "/img/**",	
                             "/webjars/**").permitAll()
-                    .antMatchers("/user/**","/Market/**").hasRole("USER")
-                    .antMatchers("/admin/**","/Stock/**","/PIS/**","/Sales/**").hasAnyRole("ADMIN")
+                    .antMatchers("/Market/**").hasRole("USER")
+                    .antMatchers("/Stock/**","/Sales/**").hasAnyRole("ADMIN")
                     .anyRequest().authenticated()
                 .and()
                 .formLogin()

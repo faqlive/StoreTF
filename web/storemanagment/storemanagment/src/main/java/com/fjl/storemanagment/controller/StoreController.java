@@ -34,10 +34,7 @@ public class StoreController {
 		Pageable paging = PageRequest.of(page, size);
 		
 		Page<StoreHome> listStore = serviceStore.getAll(paging);
-		model.addAttribute("listStore",listStore);
-		
-		
-		
+		model.addAttribute("listStore",listStore);		
 		return "user/stores";
 	}
 	

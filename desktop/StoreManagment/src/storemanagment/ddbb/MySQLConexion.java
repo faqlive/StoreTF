@@ -8,13 +8,14 @@ package storemanagment.ddbb;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import storemanagment.hand.ExceptionNoDB;
 
 /**
  *
  * @author FAQ
  */
 public class MySQLConexion {
-    public static Connection getConexion() {
+    public static Connection getConexion() throws SQLException {
         Connection conn = null;
         try {
             //Class.forName("com.mysql.jdbc.Driver");
@@ -22,6 +23,7 @@ public class MySQLConexion {
         } catch (SQLException ex) {
             System.out.println("Error en la conexión de la base de datos");
             System.out.println(ex.getMessage());
+            throw new SQLException();
         }
         return conn;
     }
