@@ -5,12 +5,15 @@
  */
 package storemanagment.service;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import storemanagment.interfaces.IServiceProduct;
 import storemanagment.dao.ProductDao;
 import storemanagment.ddbb.Conexion;
 import storemanagment.ddbb.IConexion;
 import storemanagment.generic.GenericService;
 import storemanagment.generic.IGenericDao;
+import storemanagment.hand.ExceptionNoDB;
 import storemanagment.model.Product;
 
 /**
@@ -21,8 +24,8 @@ public class ProductService extends GenericService <Product, Integer, String> im
 
     @Override
     public IGenericDao<Product, Integer, String> getDao() {
-        IConexion conn = Conexion.getInstace();
-	return new ProductDao(conn); 
+            IConexion conn = Conexion.getInstace(); 
+            return new ProductDao(conn);
     }
     
 }

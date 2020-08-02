@@ -13,6 +13,7 @@ import storemanagment.interfaces.IServiceLocation;
 import storemanagment.model.Location;
 import storemanagment.dao.LocationDao;
 
+
 /**
  *
  * @author FAQ
@@ -24,6 +25,7 @@ public class LocationService extends GenericService<Location, Integer, String> i
     public IGenericDao<Location, Integer, String> getDao() {
         IConexion conn = Conexion.getInstace();
         return new LocationDao(conn);
+      
     }
     
 }

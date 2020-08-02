@@ -43,6 +43,6 @@ public abstract class GenericService <T, ID extends Serializable, FK> implements
 		return returnList;
 	}
 	
-	public abstract IGenericDao<T, ID, FK> getDao();
+	public abstract IGenericDao<T, ID, FK> getDao() ;
 
 }

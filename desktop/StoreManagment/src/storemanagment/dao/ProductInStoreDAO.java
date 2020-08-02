@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import storemanagment.ddbb.IConexion;
 import storemanagment.generic.GenericDao;
+import storemanagment.hand.ExceptionNoDB;
 import storemanagment.interfaces.IPisDao;
 import storemanagment.model.ProductInStore;
 

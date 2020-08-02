@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>STOCK</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+    <h1>Stock en <span ></span></h1>
+    <p>Consulta Stock</p>
+    <ul>
+        <li>Volver al <a href="/" th:href="@{/StoreHome/stores}">listado de Almecenes</a></li>
+    </ul>
+	
+	<form th:action="@{/Market/add}" method="post">
+	     <div th:if="${pis != null}">
+	    	<table class="table text-center">
+			  <thead class="thead-dark">
+			    <tr>
+			      <th scope="col">ALMACEN</th>
+			      <th scope="col">PRODUCTO</th>
+			      <th scope="col">STOCK</th>
+			      <th scope="col">MOVIMIENTO</th>
+			    </tr>
+			  </thead>
+			  <tbody >		    
+			    <tr>
+			      <th scope="row" th:text="${pis.store.nameStore}"></th>
+			      <td th:text="${pis.product.nameProduct}"></td>
+			      <td th:text="${pis.stock}"></td>
+			      <td >Otra Cosa</td>      
+			    </tr>
+			  </tbody>
+		    <tfoot>
+			    <tr class="table-active">
+			    	<td></td>
+				    <td></td>
+				    <td></td>
+				    <td></td>
+			    </tr>
+			</tfoot>
+			</table>
+	    </div>
+	</form>
+</div>
+</body>
+</html>

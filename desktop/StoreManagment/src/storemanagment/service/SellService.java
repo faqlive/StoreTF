@@ -6,11 +6,14 @@
 package storemanagment.service;
 
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import storemanagment.dao.SellDao;
 import storemanagment.ddbb.Conexion;
 import storemanagment.ddbb.IConexion;
 import storemanagment.generic.GenericService;
 import storemanagment.generic.IGenericDao;
+import storemanagment.hand.ExceptionNoDB;
 import storemanagment.interfaces.IServiceSell;
 import storemanagment.model.Sell;
 

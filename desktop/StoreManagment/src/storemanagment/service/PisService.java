@@ -5,12 +5,14 @@
  */
 package storemanagment.service;
 
-import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import storemanagment.dao.ProductInStoreDAO;
 import storemanagment.ddbb.Conexion;
 import storemanagment.ddbb.IConexion;
 import storemanagment.generic.GenericService;
 import storemanagment.generic.IGenericDao;
+import storemanagment.hand.ExceptionNoDB;
 import storemanagment.interfaces.IServicePis;
 import storemanagment.model.ProductInStore;
 
@@ -22,8 +24,8 @@ public class PisService extends GenericService<ProductInStore,ProductInStore, In
 
     @Override
     public IGenericDao<ProductInStore, ProductInStore, Integer> getDao() {
-        IConexion conn = Conexion.getInstace();
-        return new ProductInStoreDAO(conn);
+            IConexion conn = Conexion.getInstace();
+            return new ProductInStoreDAO(conn);
     }
     
 }

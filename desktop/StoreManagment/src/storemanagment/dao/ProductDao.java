@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import storemanagment.ddbb.IConexion;
 import storemanagment.generic.GenericDao;
+import storemanagment.hand.ExceptionNoDB;
 import storemanagment.model.Product;
 
 /**

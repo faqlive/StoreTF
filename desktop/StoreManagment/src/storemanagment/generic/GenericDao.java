@@ -15,14 +15,14 @@ import storemanagment.hand.ExceptionNoDB;
  * @author FAQ
  */
 public class GenericDao {
+   
     protected Connection conexion;
-	public GenericDao(IConexion conexion) throws ExceptionNoDB {
-		super();
-		try {
-			this.conexion = conexion.conectBBDD();
-		} catch (SQLException e) {
-			e.printStackTrace();
-                        throw new ExceptionNoDB();
-		}
-	}   
+    
+    public GenericDao(IConexion conexion){
+            try {
+                this.conexion = conexion.conectBBDD();
+            } catch (SQLException e) {
+                
+            }
+    }   
 }

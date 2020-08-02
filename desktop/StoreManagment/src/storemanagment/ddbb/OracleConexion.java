@@ -14,13 +14,13 @@ import java.sql.SQLException;
  * @author FAQ
  */
 public class OracleConexion {
-    public static Connection getConexion() {
+    public static Connection getConexion() throws SQLException {
         Connection conn = null;
          try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             conn = DriverManager.getConnection("jdbc:oracle:thin:@localhot:1521:SID","USER","PASS");
         } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println("Error en la conexión de la base de datos");
+            throw new SQLException();
         }
         return conn;
     }

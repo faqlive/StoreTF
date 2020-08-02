@@ -17,6 +17,7 @@ import storemanagment.interfaces.ISellDao;
 import storemanagment.model.Sell;
 import static java.sql.Date.valueOf;
 import java.util.ArrayList;
+import storemanagment.hand.ExceptionNoDB;
 
 /**
  *

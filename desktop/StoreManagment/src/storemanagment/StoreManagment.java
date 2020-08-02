@@ -28,9 +28,9 @@ public class StoreManagment extends Application {
             URL url = StoreManagment.class.getResource("view/InitDataView.fxml");
             loader.setLocation(url);
             //  Cargo el RootNode al
-            Pane windo = (Pane) loader.load();
+            Pane window = (Pane) loader.load();
             // Crear Scene con root node.
-            Scene scene = new Scene(windo);
+            Scene scene = new Scene(window);
             primaryStage.setTitle("Store Management");
             primaryStage.getIcons().add(new Image(StoreManagment.class.getResourceAsStream("view/img/ico.png")));
             //  Agregamos la Scene al Stage

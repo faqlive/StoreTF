@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class Conexion implements IConexion {
-    private Object MySqlConexion;
+
 	/*implements IConexion {
 	/*
 	 * Se limitan las bases de datos a las que nos podemos conectar

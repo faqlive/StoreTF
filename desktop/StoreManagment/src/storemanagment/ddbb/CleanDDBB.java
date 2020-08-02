@@ -26,12 +26,10 @@ public class CleanDDBB {
     private static final String[] tables = {"products", "products_stores","sales","storehouse","location"};
 
     public CleanDDBB() throws ExceptionNoDB {
-            super();
             try {
                 IConexion conexion = Conexion.getInstace();
                 this.conexion = conexion.conectBBDD();
             } catch (SQLException e) {
-                    e.printStackTrace();
                    throw new ExceptionNoDB();
             }
     }

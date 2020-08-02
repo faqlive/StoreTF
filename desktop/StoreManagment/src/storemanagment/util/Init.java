@@ -35,12 +35,14 @@ import storemanagment.service.StoreHomeService;
 public class Init {
 
      
-    public void initialization(){
+    public void initialization() throws ExceptionNoDB{
         // truncar bases de datos.
         
-        try{
-        new CleanDDBB().cleanAll();
         
+        try{
+        // limpiando Base de datos.    
+        new CleanDDBB().cleanAll();
+        // inicializando Almacenes
         IServiceStoreHome storeService = new StoreHomeService();
         initStores().stream().forEach(store -> storeService.save(store));
         //  inicializar porducto.
@@ -52,12 +54,13 @@ public class Init {
         // Inicialzar Stock almacentes.
         IServicePis servicePis = new PisService();
         fillInStore().stream().forEach(pis -> servicePis.save(pis));
+
         }catch(ExceptionNoDB endb){
-            // TODO Mostrar error de falta de base de datos.
+            throw new ExceptionNoDB();
         }
         
     }
-    
+      
     private static List<Sell> initSells(){
         List<Sell> listSell = new ArrayList<>();
         IServiceStoreHome storeService = new StoreHomeService();
