@@ -34,11 +34,12 @@ public class MarketController {
 					@RequestParam("idProduct") Integer idProduct,
 					@RequestParam("stock") Integer stock) {
 
+		ProductInStore pis = null;
 		if(idStore != 0 && idProduct != 0) {
-			ProductInStore pis = servicePis.get(new PisID(idStore,idProduct));
+			pis = servicePis.get(new PisID(idStore,idProduct));
 			pis.setProduct(serviceProduct.get(idProduct));
 			pis.setStore(serviceStore.get(idStore));
-			model.addAttribute("pis",pis);
+		//	model.addAttribute("pis",pis);
 		}else {
 			return "error";
 		}
@@ -51,11 +52,14 @@ public class MarketController {
 			cart = (MarketCart) session.getAttribute("cart");
 		}
 		
+		cart.add(pis);
+		
+		
 		model.addAttribute("stock", stock);
+		cart.getCart().forEach(p -> System.out.println(p));
+		session.setAttribute("cart", cart.getCart());
 		
-		session.setAttribute("cart", cart.getMarketCart());
-		
-		return "user/market_form";	
+		return "user/market_cart";	
 	}
 	
 }

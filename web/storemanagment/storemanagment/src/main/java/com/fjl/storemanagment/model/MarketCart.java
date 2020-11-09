@@ -11,18 +11,18 @@ public class MarketCart {
 	private static List<ProductInStore> cart;
 
 	private MarketCart() {
-		MarketCart.cart = new ArrayList<>();	
+		MarketCart.cart = new ArrayList<ProductInStore>();	
 	}
 	
 	public MarketCart getMarketCart() {
 		return new MarketCart();
 	}
-	
-	protected static List<ProductInStore> getCart() {
+	 
+	public List<ProductInStore> getCart() {
 		return cart;
 	}
 
-	protected static void setCart(List<ProductInStore> cart) {
+	protected void setCart(List<ProductInStore> cart) {
 		MarketCart.cart = cart;	
 	}
 	
@@ -36,4 +36,10 @@ public class MarketCart {
 	public ProductInStore getPis(Integer idProduct) {
 		return cart.get(idProduct);
 	}
+
+	@Override
+	public String toString() {
+		return cart.toString();
+	}
+	 
 }
