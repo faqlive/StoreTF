@@ -10,13 +10,20 @@ import java.sql.SQLException;
 import com.fjl.desktop.storemanagment.ddbb.IConexion;
 
 /**
+ * Clase para la conexión a la base de datos.
  *
- * @author FAQ
+ *
+ * @author Facundo J. López
+ * @version 1.0
+ * @since 12/2020
  */
 public class GenericDao {
    
     protected Connection conexion;
-    
+
+    /**
+     *
+     * */
     public GenericDao(IConexion conexion){
             try {
                 this.conexion = conexion.conectBBDD();

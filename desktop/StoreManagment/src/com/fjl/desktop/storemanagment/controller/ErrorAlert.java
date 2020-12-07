@@ -9,11 +9,29 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 /**
+ * Clase publica <h4>ErrorAlert</h4>
  *
- * @author FAQ
+ * Calse destina a mostar mensajes de error
+ * al no encontrar los recursos correctos de BBDD
+ *
+ * @author Facundo J. López
+ * @version 1.0
+ * @since 12/2020
+ *
  */
 public class ErrorAlert {
-    
+
+    /**
+     * Lanza la alerta con los siguientes mensajes.
+     *
+     *
+     * <h6>"ERROR"</h6>
+     * <p>"Ha ocurrido un error al intetar acceder a la base de datos
+     *  Por favor verifique que el servicio del motor de Base de Datos este activo y la
+     *  Base de datos Correctamente creada."</p>
+     *
+     *
+     * */
     public static void errorAlert(){
         Alert alert = new Alert (AlertType.WARNING);
         alert.setTitle("ERROR");

@@ -25,6 +25,7 @@ import com.fjl.desktop.storemanagment.model.Sell;
 import com.fjl.desktop.storemanagment.model.StoreHome;
 import com.fjl.desktop.storemanagment.service.SellService;
 import com.fjl.desktop.storemanagment.service.StoreHomeService;
+import javafx.concurrent.Task;
 
 
 /**
@@ -36,30 +37,47 @@ import com.fjl.desktop.storemanagment.service.StoreHomeService;
 public class Init {
 
      
-    public void initialization() throws ExceptionNoDB {
-        // truncar bases de datos.
-        
-        
-        try{
-        // limpiando Base de datos.    
-        new CleanDDBB().cleanAll();
-        // inicializando Almacenes
-        IServiceStoreHome storeService = new StoreHomeService();
-        initStores().stream().forEach(store -> storeService.save(store));
-        //  inicializar porducto.
-        IServiceProduct productService = new ProductService();
-        initProducts().stream().forEach(product -> productService.save(product));
-        // inicializar Ventas
-        IServiceSell serviceSell = new SellService();
-        initSells().stream().forEach(sell -> serviceSell.save(sell));
-        // Inicialzar Stock almacentes.
-        IServicePis servicePis = new PisService();
-        fillInStore().stream().forEach(pis -> servicePis.save(pis));
+    public static Task initialization() throws ExceptionNoDB {
 
-        }catch(ExceptionNoDB endb){
-            throw new ExceptionNoDB();
-        }
-        
+        Task task = new Task() {
+
+            @Override
+            protected Object call() throws Exception {
+                // limpiando Base de datos.
+                    updateMessage("Limpiando BBDD");
+                    new CleanDDBB().cleanAll();
+                    updateProgress(1, 6);
+
+                    // inicializando Almacenes
+                    updateMessage("Creando tiendas");
+                    IServiceStoreHome storeService = new StoreHomeService();
+                    initStores().stream().forEach(store -> storeService.save(store));
+                    updateProgress(2, 6);
+
+                    //  inicializar porducto.
+                    updateMessage("Creando Productos");
+                    IServiceProduct productService = new ProductService();
+                    initProducts().stream().forEach(product -> productService.save(product));
+                    updateProgress(3, 6);
+
+                    // inicializar Ventas
+                    updateMessage("Recreando ventas");
+                    IServiceSell serviceSell = new SellService();
+                    initSells().stream().forEach(sell -> serviceSell.save(sell));
+                    updateProgress(4, 6);
+
+                    // Inicialzar Stock almacentes.
+                    updateMessage("Llenando tiendas");
+                    IServicePis servicePis = new PisService();
+                    fillInStore().stream().forEach(pis -> servicePis.save(pis));
+                    updateProgress(5, 6);
+                    Thread.sleep(500);
+                    //updateMessage("CARGA EXITO");
+                    updateProgress(6, 6);
+                return true;
+            }
+        };
+        return task;
     }
       
     private static List<Sell> initSells(){

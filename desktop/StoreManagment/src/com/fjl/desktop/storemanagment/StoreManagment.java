@@ -10,16 +10,33 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
+ * Clase de entrada de la aplicación desarrollada
+ * con la tecnología FX
  *
- * @author FAQ
+ * @author Facundo J. López
+ * @version 1.0
+ * @since 12/2020
  */
 public class StoreManagment extends Application {
-    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+
     @Override
     public void init(){
         
     }
-    
+
+    /**
+     * Método para la inciación de la grafica del software.
+     *
+     * @param primaryStage
+     *
+     * */
     @Override
     public void start(Stage primaryStage) {
         
@@ -46,12 +63,4 @@ public class StoreManagment extends Application {
     public void stop(){
         
     }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
 }

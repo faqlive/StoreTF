@@ -5,10 +5,9 @@
  */
 package com.fjl.desktop.storemanagment.controller;
 
+import java.io.StringReader;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,8 +16,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.paint.Paint;
-import com.fjl.desktop.storemanagment.hand.ExceptionNoDB;
 import com.fjl.desktop.storemanagment.util.Init;
+
+import static java.lang.Thread.sleep;
 
 /**
  * FXML Controller class
@@ -26,12 +26,8 @@ import com.fjl.desktop.storemanagment.util.Init;
  * @author FAQ
  */
 public class InitDataController implements Initializable {
-    @FXML
-    private Button btnStore;
-    @FXML
-    private Button btnProducts;
-    @FXML
-    private Button btnSells;
+
+
     @FXML
     private Button btnAuto;
     @FXML
@@ -46,7 +42,6 @@ public class InitDataController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         progBar.setVisible(false);
-        progBar.setProgress(0);
         progTxt.setVisible(false);
     }    
     
@@ -58,73 +53,51 @@ public class InitDataController implements Initializable {
 
     @FXML
     private void autoGeneret(ActionEvent event) {
-        
+        progBar.progressProperty().unbind();
         btnAuto.setDisable(true);
-        progBar.indeterminateProperty();
-        
+        progBar.setProgress(0);
+        progTxt.setText("");
+        progTxt.setTextFill(Paint.valueOf("BLACK"));
         progTxt.setVisible(true);
         progBar.setVisible(true);
-        progBar.indeterminateProperty().addListener(new ChangeListener<Boolean>(){
-            @Override
-            public void changed(ObservableValue<? extends Boolean> ob, Boolean v1, Boolean v2) {
-                if(v2){
-                   progTxt.setText("En progreso");
-                   progTxt.setTextFill(Paint.valueOf("BLACK"));
-                }else if(v1){
-                   progTxt.setText("Carga EXITOSA");
-                   progTxt.setTextFill(Paint.valueOf("GREEN"));
-                   btnAuto.setDisable(false);
-                   progBar.setVisible(false);
-                }else{
-                   progTxt.setText("ERROR EN CARGA");
-                   progTxt.setTextFill(Paint.valueOf("RED"));
-                   btnAuto.setDisable(false);
-                   progBar.setVisible(false);
-                   ErrorAlert.errorAlert(); 
-                }
+
+        Task task = null;
+// Se genera una constante para poder utilizarlo dentro de la funcion lamda
+
+
+        try {
+            task = Init.initialization();
+            task.setOnFailed(event1 -> {
+                ErrorAlert.errorAlert();
+                btnAuto.setDisable(false);
+                progBar.setVisible(false);
+                progTxt.setVisible(false);
+                });
+        } catch (Throwable throwable) {
+            ErrorAlert.errorAlert();
+            throwable.printStackTrace();
+
+            return;
+        }
+
+        progBar.progressProperty().bind(task.progressProperty());
+        Task finalTask = task;
+        progBar.progressProperty().addListener((observable, oldValue, newValue) -> {
+
+            if (newValue.doubleValue() == 1) {
+                progTxt.setText("Carga EXITOSA");
+                progTxt.setTextFill(Paint.valueOf("GREEN"));
+                btnAuto.setDisable(false);
+            } else {
+                progTxt.setText(finalTask.getMessage());
             }
         });
-               
-        Task task;
-        task = new Task() {
-            
-            @Override
-            protected Object call() throws Exception {
-                try {
-                    new Init().initialization();
-                    updateProgress(1, 1);
-                    return true;
-                } catch (ExceptionNoDB ex) {
-                    
-                    return false;
-//                    ErrorAlert.errorAlert();             
-                }finally{
-                    this.succeeded();
-                }
-              //  return null;
-            }
-        };
-                
-        progBar.progressProperty().unbind();
-        progBar.progressProperty().bind(task.progressProperty());   
-   
+
+
         Thread th = new Thread(task);
+
+
         th.start();
     }
 }
-
-class Progress implements Runnable{
-
-    @Override
-    public void run() {
-     try {
-            new Init().initialization();
-        } catch (ExceptionNoDB ex) {
-            ErrorAlert.errorAlert();
-        }
-    }
-
-}
-
-
 

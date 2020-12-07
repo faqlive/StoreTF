@@ -2,6 +2,7 @@ package com.fjl.storemanagment.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -32,7 +33,7 @@ public class ProductInStore implements Serializable {
     @MapsId("idStore")
     @JoinColumn(name = "idStore", insertable = false, updatable = false)
     private StoreHome store;
-	
+    @Column(name="stock")
     private int stock;
     
     public ProductInStore (Integer idStore,Integer idProduct, Integer stock){
@@ -96,6 +97,11 @@ public class ProductInStore implements Serializable {
 		result = prime * result + ((store == null) ? 0 : store.hashCode());
 		return result;
 	}
+	@Override
+	public String toString() {
+		return "ProductInStore [id=" + id + ", product=" + product + ", store=" + store + ", stock=" + stock + "]";
+	}
+	
     
     
 }

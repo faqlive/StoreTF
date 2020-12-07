@@ -19,7 +19,9 @@ public class MySQLConexion {
         Connection conn = null;
         try {
             //Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/store?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC","admin_store","TFcice123");		
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/store?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC"
+                                                ,"admin_store"
+                                                ,"TFcice123");
         } catch (SQLException ex) {
             throw new SQLException();
         }

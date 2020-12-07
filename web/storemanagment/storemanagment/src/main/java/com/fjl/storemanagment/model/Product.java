@@ -72,6 +72,12 @@ public class Product implements Comparable<Product>{
 		result = prime * result + idProduct;
 		return result;
 	}
-    
+
+	@Override
+	public String toString() {
+		return "Product [idProduct=" + idProduct + ", nameProduct=" + nameProduct + ", priceProduct=" + priceProduct
+				+ "]";
+	}
+	    
     
 }
