@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.fjl.storemanagment.model.StoreHome;
 import com.fjl.storemanagment.service.StoreService;
 
+import springfox.documentation.annotations.ApiIgnore;
+
+@ApiIgnore
 @Controller
 @RequestMapping("/StoreHome")
 public class StoreController {

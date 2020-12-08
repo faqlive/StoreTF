@@ -1,11 +1,11 @@
 package com.fjl.storemanagment.interfaces;
 
 import java.time.LocalDate;
-
+import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
-
 import com.fjl.storemanagment.generic.IGenericService;
+import com.fjl.storemanagment.model.Product;
 import com.fjl.storemanagment.model.Sell;
 
 
@@ -17,5 +17,13 @@ public interface ISellService extends IGenericService<Sell, Integer, Integer> {
 											Integer idStore, Pageable paging);
 
 	public Page<Sell> getAllForangeKey(Integer idStore, Pageable paging);
+	
+	public List<Sell> totalSells();
+	
+	public List<Sell> storeSells(Integer idStore);
+	
+	public List<Sell> annualSells(LocalDate dateUntil);
+	
+	public List<Product> topSell();
 
 }

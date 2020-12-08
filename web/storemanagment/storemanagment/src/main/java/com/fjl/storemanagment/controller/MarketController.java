@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.stereotype.Controller;
 import com.fjl.storemanagment.model.MarketCart;
 import com.fjl.storemanagment.model.PisID;
@@ -17,8 +16,10 @@ import com.fjl.storemanagment.model.ProductInStore;
 import com.fjl.storemanagment.service.PisService;
 import com.fjl.storemanagment.service.ProductService;
 import com.fjl.storemanagment.service.StoreService;
-import com.fjl.storemanagment.util.Paginador;
 
+import springfox.documentation.annotations.ApiIgnore;
+
+@ApiIgnore
 @Controller
 @RequestMapping("/Market")
 public class MarketController {
@@ -33,7 +34,11 @@ public class MarketController {
 	@Autowired
 	private MarketCart cart;
 
-
+	/**
+	 * Añadir a al carrito de compra el producto deseado.
+	 * 
+	 * 
+	 * */
 	@RequestMapping("/addCart")
 	public String buy(Model model, HttpServletRequest request,
 					@RequestParam("idStore") Integer idStore,
@@ -60,27 +65,24 @@ public class MarketController {
 			pis.setStore(serviceStore.get(idStore));
 			// solo coge uno.
 			pis.setStock(1);
-			servicePis.sell(pis);
+			///////////////////////
+			//servicePis.sell(pis);
+			
+			///////////////////////
 		}else {
 		// mostrar mensaje de error	
 		}
-		
-		
-		if(session.getAttribute("cart") == null) {
-			cart = cart.getMarketCart();
 			
+		if(session.getAttribute("cart") == null) {
+			cart = cart.getMarketCart();	
 		}else {
 			cart = (MarketCart) session.getAttribute("cart");
-		}
-		
-		
+		}	
+
 		cart.add(pis);
-		
 
 		model.addAttribute("stock", stock);
 		session.setAttribute("cart", cart);
-		
-	
 		model.addAttribute("idStore",idStore);
 		
 		// mostrar mensaje carrito
@@ -103,9 +105,6 @@ public class MarketController {
 		}else {
 			cart = (MarketCart) session.getAttribute("cart");
 		}
-		
-		
-		
 		session.setAttribute("cart", cart);
 		
 		return"user/market_cart";

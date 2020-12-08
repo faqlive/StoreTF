@@ -57,9 +57,11 @@ public class PisService extends GenericService<ProductInStore,PisID,Integer> imp
 		}	
 		return accion;
 	}
-	
+	/**
+	 * 
+	 * */
 	public void sell(ProductInStore entity) {
-		Optional<ProductInStore> pisPreExisting = pisDao.findById(entity.getId()); //findById(entity.getId());
+		Optional<ProductInStore> pisPreExisting = pisDao.findById(entity.getId()); 
 		if(pisPreExisting.isPresent()) {
 			Integer newStock = pisPreExisting.get().getStock() - entity.getStock();
 			Integer idProcut = entity.getProduct().getIdProduct();

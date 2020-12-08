@@ -12,6 +12,7 @@ import com.fjl.storemanagment.dao.ISellDao;
 import com.fjl.storemanagment.generic.GenericService;
 import com.fjl.storemanagment.generic.IGenericDao;
 import com.fjl.storemanagment.interfaces.ISellService;
+import com.fjl.storemanagment.model.Product;
 import com.fjl.storemanagment.model.Sell;
 
 @Service
@@ -26,8 +27,7 @@ public class SellService extends GenericService<Sell,Integer,Integer> implements
 	}
 
 	@Override
-	public Page<Sell> getAllForangeKey(Integer forangeKey, Pageable paging) {
-		
+	public Page<Sell> getAllForangeKey(Integer forangeKey, Pageable paging) {	
 		return sellDao.findAll(paging);
 	}
 	
@@ -47,8 +47,34 @@ public class SellService extends GenericService<Sell,Integer,Integer> implements
 
 	@Override
 	public List<Sell> getAllForangeKey(Integer forangeKey) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
+
+	@Override
+	public List<Sell> totalSells() {
+		
+		return sellDao.totalSells();
+	}
+
+	@Override
+	public List<Sell> storeSells(Integer idStore) {
+		
+		return sellDao.storeSells(idStore);
+	}
+
+	@Override
+	public List<Sell> annualSells(LocalDate dateUntil) {
+		
+		return sellDao.annualSells(java.sql.Date.valueOf(dateUntil));
+	}
+
+	@Override
+	public List<Object> topSell() {
+		
+		return sellDao.topSell();
+	}
+	
+	
 
 }

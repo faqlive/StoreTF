@@ -13,6 +13,9 @@ import com.fjl.storemanagment.service.PisService;
 import com.fjl.storemanagment.service.ProductService;
 import com.fjl.storemanagment.service.StoreService;
 
+import springfox.documentation.annotations.ApiIgnore;
+
+@ApiIgnore
 @Controller
 @RequestMapping("/Stock")
 public class StockController {

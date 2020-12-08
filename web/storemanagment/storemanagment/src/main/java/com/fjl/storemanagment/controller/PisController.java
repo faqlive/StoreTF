@@ -1,13 +1,9 @@
 package com.fjl.storemanagment.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -30,6 +26,9 @@ import com.fjl.storemanagment.service.ProductService;
 import com.fjl.storemanagment.service.StoreService;
 import com.fjl.storemanagment.util.Paginador;
 
+import springfox.documentation.annotations.ApiIgnore;
+
+@ApiIgnore
 @Controller
 @RequestMapping("/PIS")
 public class PisController {
@@ -74,7 +73,7 @@ public class PisController {
 				cart = (MarketCart) session.getAttribute("cart");
 			}
 		}
-		
+		listPis = cart.subtract(listPis);
 		
 		// PAGINAR Y ORDENAR	
 		Paginador.paginar(model,totalPage,page);

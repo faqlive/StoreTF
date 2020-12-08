@@ -24,7 +24,9 @@ import com.fjl.storemanagment.model.Sell;
 import com.fjl.storemanagment.model.StoreHome;
 import com.fjl.storemanagment.util.Paginador;
 
+import springfox.documentation.annotations.ApiIgnore;
 
+@ApiIgnore
 @Controller
 @RequestMapping("/Sales")
 public class SellController {

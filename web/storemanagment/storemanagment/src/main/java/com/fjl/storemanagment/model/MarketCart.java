@@ -30,7 +30,8 @@ public class MarketCart {
 	
 	public void add(ProductInStore pis) {		
 		if(cart.contains(pis)) {
-			int indx = cart.indexOf(pis);		
+			int indx = cart.indexOf(pis);
+			
 			cart.get(indx).setStock(cart.get(indx).getStock()+ pis.getStock());
 		}else {
 			cart.add(pis);
@@ -48,18 +49,29 @@ public class MarketCart {
 		return cart.stream().mapToInt(pis ->pis.getStock()).sum();
 	}
 	
-	public static void subtract(Page<ProductInStore> listPis, List<ProductInStore> listCart) {
-		listPis.forEach(pis -> {
-			if(listCart.contains(pis)) {
-				int ind = listCart.indexOf(pis);
-				int cartStock = listCart.get(ind).getStock();
-				int rest = pis.getStock() - cartStock;
-				if (rest >= 0) pis.setStock(rest);
-			}	
+	/**
+	 * Extrae del la cuenta del stock los productos
+	 * añadidos en en carrito del cliente
+	 * 
+	 * 
+	 * */
+	public Page<ProductInStore> subtract(Page<ProductInStore> listPis) {
+		Page<ProductInStore> newListPis = null;
+		
+		newListPis = listPis.map(pis -> {
+			if(cart.contains(pis)) {
+				int indx = cart.indexOf(pis);
+				if(pis.getStock()>0) {
+				pis.setStock(pis.getStock() - cart.get(indx).getStock());
+				}
+			}
+			return pis;
 		});
 		
+		return newListPis;
+		
 	}
-	
+
 	@Override
 	public String toString() {
 		return cart.toString();
