@@ -4,15 +4,15 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import com.fjl.storemanagment.dao.ISellDao;
+import com.fjl.storemanagment.dto.TotalSales;
 import com.fjl.storemanagment.generic.GenericService;
 import com.fjl.storemanagment.generic.IGenericDao;
 import com.fjl.storemanagment.interfaces.ISellService;
-import com.fjl.storemanagment.model.Product;
 import com.fjl.storemanagment.model.Sell;
 
 @Service
@@ -20,7 +20,7 @@ public class SellService extends GenericService<Sell,Integer,Integer> implements
 	
 	@Autowired
 	private ISellDao sellDao;
-	
+
 	@Override
 	public IGenericDao<Sell, Integer,Integer> getDao() {
 		return sellDao;
@@ -52,25 +52,25 @@ public class SellService extends GenericService<Sell,Integer,Integer> implements
 	}
 
 	@Override
-	public List<Sell> totalSells() {
+	public List<TotalSales> totalSells() {
 		
 		return sellDao.totalSells();
 	}
 
 	@Override
-	public List<Sell> storeSells(Integer idStore) {
+	public List<TotalSales> storeSells(Integer idStore) {
 		
 		return sellDao.storeSells(idStore);
 	}
 
 	@Override
-	public List<Sell> annualSells(LocalDate dateUntil) {
+	public List<TotalSales> annualSells(Integer year) {
 		
-		return sellDao.annualSells(java.sql.Date.valueOf(dateUntil));
+		return sellDao.annualSells(year);
 	}
 
 	@Override
-	public List<Object> topSell() {
+	public List<TotalSales> topSell() {
 		
 		return sellDao.topSell();
 	}
