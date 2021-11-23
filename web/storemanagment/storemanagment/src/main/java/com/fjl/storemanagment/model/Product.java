@@ -1,5 +1,6 @@
 package com.fjl.storemanagment.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ import lombok.Data;
 @Entity
 @Table(name="products", schema ="store")
 @Data
-public class Product implements Comparable<Product>{
+public class Product implements Serializable, Comparable<Product>{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

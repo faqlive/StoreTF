@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.fjl.storemanagment.model.MarketCart;
 import com.fjl.storemanagment.model.Product;
 import com.fjl.storemanagment.model.ProductInStore;
 import com.fjl.storemanagment.service.PisService;
 import com.fjl.storemanagment.service.ProductService;
 import com.fjl.storemanagment.service.StoreService;
+import com.fjl.storemanagment.util.MarketCart;
 import com.fjl.storemanagment.util.Paginador;
 
 import springfox.documentation.annotations.ApiIgnore;
@@ -57,8 +57,9 @@ public class PisController {
 		
 		// Calcular total de paginas
 		Page<ProductInStore> listPis = servicePis.getAllForangeKey(idStore,paging);
+		// Estraeer productos ya en carrito
+		listPis = cart.subtract(listPis);
 		listPis.forEach(pis -> mapPis.put(serviceProduct.get(pis.getId().getIdProduct()), pis.getStock()));
-		
 		int totalPage = listPis.getTotalPages();
 		
 		//RESTAR CARRITO
@@ -73,7 +74,7 @@ public class PisController {
 				cart = (MarketCart) session.getAttribute("cart");
 			}
 		}
-		listPis = cart.subtract(listPis);
+		
 		
 		// PAGINAR Y ORDENAR	
 		Paginador.paginar(model,totalPage,page);

@@ -11,10 +11,10 @@
 	</parent>
 	<groupId>com.fjl</groupId>
 	<artifactId>storemanagment</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>war</packaging>
 	<name>storemanagment</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Aplicacion web de Festión de Almacenes</description>
 
 	<properties>
 		<java.version>1.8</java.version>

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
  * CONTRATO PARA TODAS LAS API
  * */
 public interface IGenericService <T, ID extends Serializable, FK>{
+	
     void save (T entity);
     void delete(ID id);
     T get(ID id);

@@ -22,6 +22,7 @@ public class PisService extends GenericService<ProductInStore,PisID,Integer> imp
 	@Autowired
 	private IPisDao pisDao;
 	
+	
 	@Override
 	public IGenericDao<ProductInStore,PisID,Integer> getDao() {
 		return pisDao;
@@ -60,19 +61,39 @@ public class PisService extends GenericService<ProductInStore,PisID,Integer> imp
 	/**
 	 * 
 	 * */
+	@Override
 	public void sell(ProductInStore entity) {
 		Optional<ProductInStore> pisPreExisting = pisDao.findById(entity.getId()); 
 		if(pisPreExisting.isPresent()) {
 			Integer newStock = pisPreExisting.get().getStock() - entity.getStock();
 			Integer idProcut = entity.getProduct().getIdProduct();
 			Integer idStore = entity.getStore().getIdStore();
+
 			if(newStock == 0) {
 				pisDao.delete(entity);
 			}else {
 				pisDao.update(idStore,idProcut, newStock);	
-		
 			}
 		}
+	}
+
+	@Override
+	public Page<ProductInStore> ceckRiskStockByStore(Integer idStore , Optional<Integer> riskStock,Pageable paging) {
+		Integer riskStockBase = riskStock.orElse(5);
+		return pisDao.ceckRiskStockByStore(idStore,riskStockBase,paging);
+		
+	}
+
+	@Override
+	public Integer countBreakStockByStore(Integer idStore) {
+		
+		return pisDao.countBreakStockByStore(idStore);
+	}
+
+	@Override
+	public Integer countRiskStockByStore(Integer idStore, Optional<Integer> riskStock) {
+		
+		return pisDao.countRiskStockByStore(idStore, riskStock);
 	}
 
 

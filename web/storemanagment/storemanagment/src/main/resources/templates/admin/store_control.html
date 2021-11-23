@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>STORES</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+    <h1>Listado de Almacenes</h1>
+    <p>Gestionando Almacenes</p>
+    <ul>
+        <li>Go to the <a href="/" th:href="@{/homemenu}">Home</a></li>
+    </ul>
+    <div>
+    	<table class="table text-center">
+		  <thead class="thead-dark">
+		    <tr>
+		      
+		      <th scope="col">COD</th>
+		      <th scope="col">NOMBRE</th>
+		      <th scope="col">LOCALIDAD</th>
+		      <th scope="col">PELIGRO</th>
+		      <th scope="col">FALTANTES</th>
+		      <th scope="col">INFORME</th>
+		    </tr>
+		  </thead>
+		  <tbody >		    
+		    <tr th:each="store : ${listStoreReport}">
+		      <th scope="row" th:text="${store.storeHome.idStore}"></th>
+		      <td th:text="${store.storeHome.nameStore}"></td>
+		      <td th:text="${store.storeHome.idLocation}"></td>
+		      <td th:text="${store.riskProduct}"></td>
+		      <td th:text="${store.breakProduct}"></td>
+		      <td><a href="/" th:href="@{'/Stock/checkIn/' + ${store.storeHome.idStore}}">Analizar</a></td>
+		    </tr>
+		  </tbody>
+		  <tfoot>
+		    <tr class="table-active">
+		    	<td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+		    </tr>
+		</tfoot>
+		</table>
+		
+<div th:insert=" fragments/pagination :: pagination(${listPage},  ${'/Stock/check?'}, ${lastPage}, ${curretPage})"></div>
+    </div>
+</div>
+</body>
+</html>

@@ -74,6 +74,11 @@ public class SellService extends GenericService<Sell,Integer,Integer> implements
 		
 		return sellDao.topSell();
 	}
+
+	@Override
+	public void sell(Integer idStore, Integer idProduct, LocalDate date) {
+		sellDao.sell(idStore, idProduct, java.sql.Date.valueOf(date));
+	}
 	
 	
 

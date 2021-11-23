@@ -15,13 +15,15 @@
     </ul>
 	
 	<form th:action="@{/Market/add}" method="post">
-	     <div th:if="${session.cart != null}">
+	     <div th:if="${session.cart != null && session.cart.size() > 0}">
 	    	<table class="table text-center">
 			  <thead class="thead-dark">
 			    <tr>
 			      <th scope="col">ALMACEN</th>
 			      <th scope="col">PRODUCTO</th>
 			      <th scope="col">STOCK</th>
+			      <th scope="col">PRECIO</th>
+			      <th scope="col">TOTAL</th>
 			      <th scope="col">MOVIMIENTO</th>
 			    </tr>
 			  </thead>
@@ -30,23 +32,37 @@
 			      <th scope="row" th:text="${pis.store.nameStore}"></th>
 			      <td th:text="${pis.product.nameProduct}"></td>
 			      <td th:text="${pis.stock}"></td>
-			      <td >Otra Cosa</td>      
+			      <td th:text="|${#numbers.formatDecimal(pis.product.priceProduct, 0,2)}  &euro;|"></td>
+			      <td th:text="|${#numbers.formatDecimal(pis.product.priceProduct * pis.stock, 0,2)} &euro;|"></td>
+			      <td> <a th:href="@{'/Market/less/?idProduct='+${pis.product.idProduct}+'&idStore='+${pis.store.idStore}}">
+		      			<span> Quitar </span>
+		     		 </a>
+		      	  </td>      
 			    </tr>
 			  </tbody>
 		    <tfoot>
 			    <tr class="table-active">
-			    	<td></td>
+			    	<td>
+			    	<a th:href="@{/Market/clearCart}">
+			    	<button type="button" class="btn btn-outline-danger">Vaciar Carrito</button></a></td>
 				    <td></td>
 				    <td></td>
-				    <td></td>
+				    <td>A PAGAR: </td>
+				    <td th:text="|${session.cart.getTotalAmount()} &euro;|"></td>
+				    <td><a th:href="@{/Market/buy}">
+				    <button type="button" class="btn btn-outline-success">Comprar</button></a>
+				    </td>
 			    </tr>
 			</tfoot>
 			</table>
 	    </div>
+	     <div th:if="${msj != null }" class="alert alert-success" role="alert" th:text="${msj}">
+	  
+	    </div>
+	    <div th:unless="${session.cart != null && session.cart.size() > 0}" class="alert alert-success" role="alert">
+	    	CARRO VACIO
+	    </div>
 	</form>
 </div>
-</body>
-</html>
-
 </body>
 </html>

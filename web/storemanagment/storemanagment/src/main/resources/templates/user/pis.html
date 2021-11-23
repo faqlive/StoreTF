@@ -32,10 +32,29 @@
 		      <td th:text="${pis.value}"></td>
 		      <td th:text="|${pis.key.priceProduct}  &euro;|"></td>
 		      <td sec:authorize="hasRole('USER')">
-		      <a th:href="@{'/Market/addCart/?idProduct='+${pis.key.idProduct}+'&idStore='+${idStore}+'&stock='+${pis.value}}">
-		      A&ntilde;adir a Carrito
-		      </a>
-			  </td>    
+		      	<div th:if="${pis.value > 0}" th:remove="tag" >
+		     		 <a th:href="@{'/Market/addCart/?idProduct='+${pis.key.idProduct}+'&idStore='+${idStore}+'&stock='+${pis.value}}">
+		      			A&ntilde;adir a Carrito
+		     		 </a>
+		  		</div>
+		  		<div th:if="${pis.value == 0}" th:remove="tag" >
+		     		 <span>
+		      			Sin Stock
+		     		 </span>
+		     	</div>
+			  </td>
+			 	  
+			  <td sec:authorize="hasRole('ADMIN')">
+			  	<a th:href="@{'/Stock/form/?idProduct='+${pis.key.idProduct}+'&idStore='+${idStore}}">
+		      			<span>
+		      				Reponer
+		     			 </span>
+		     		 </a>
+			  </td>
+			  
+			  
+			  
+			      
 		    </tr>
 		  	
 		  </tbody>

@@ -17,11 +17,12 @@
 	                    </li>
 	                </ul>
 	            </div>
-	        </div>
-	        <div>
-	        	<div class="logInfo" sec:authorize="isAuthenticated()" style="display: inline-block">
-	        	
-       				<div th:if="${session.cart == null}">
+	             <div>
+	        
+	        	<div class="logInfo" sec:authorize="hasRole('USER')" style="display: inline-block">
+	        	<!-- Carrito vacio -->
+       				<div th:if="${session.cart == null}" th:remove="tag">
+       				<a th:href="@{/Market/list}">
 						<button type="button" class="btn btn-light">
 							CARRITO:
 							<span class="badge badge-light">0</span>
@@ -29,19 +30,24 @@
 			  					<path fill-rule="evenodd" d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9H2zM1 7v1h14V7H1zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5z"/>
 							</svg>
 						</button>
-					</div>  
-                    <a th:href="@{/Market/list}"><div th:if="${session.cart != null}" >
+					</a>
+					</div> 
+					<!-- Carrito vacio -->
+
+                    <div th:if="${session.cart != null}" th:remove="tag" >
+                    <a th:href="@{/Market/list}">
                     	<button type="button" class="btn btn-dark">
 							CARRITO: <span class="badge badge-light" th:text="${session.cart.size()}"></span>
 							<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-basket-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 								<path fill-rule="evenodd" d="M5.071 1.243a.5.5 0 0 1 .858.514L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 6h1.717L5.07 1.243zM3.5 10.5a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3z"/>
 							</svg>  
 						</button>
-                    	</div></a>
+						  </a>
+                    </div>              
             	</div>
 	        </div>
+	        </div>
 	    </nav>
-	    
    </header>
 </th:block>
 </body>

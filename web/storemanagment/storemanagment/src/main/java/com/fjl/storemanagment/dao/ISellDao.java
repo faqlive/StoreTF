@@ -3,8 +3,11 @@ package com.fjl.storemanagment.dao;
 import java.sql.Date;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -55,6 +58,10 @@ public interface ISellDao extends IGenericDao<Sell, Integer, Integer> {
 			nativeQuery = true)
     public List<TotalSales> topSell();
 	
+	@Modifying(flushAutomatically = true, clearAutomatically = true)
+	@Transactional
+	@Query(value = "INSERT INTO sales (idProduct, idStore, year) VALUES (:idProduct, :idStore, :year)", nativeQuery = true)
+    public void sell(@Param("idStore") Integer idStore,@Param("idProduct") Integer idProduct ,@Param("year") Date year);
 
 	
 	

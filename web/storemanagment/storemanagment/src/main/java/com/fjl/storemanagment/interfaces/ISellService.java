@@ -26,5 +26,7 @@ public interface ISellService extends IGenericService<Sell, Integer, Integer> {
 	public List<TotalSales> annualSells(Integer year);
 	
 	public List<TotalSales> topSell();
+	
+	public void sell(Integer idStore,Integer idProduct, LocalDate date);
 
 }

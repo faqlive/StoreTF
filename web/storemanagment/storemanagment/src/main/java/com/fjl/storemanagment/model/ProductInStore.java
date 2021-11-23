@@ -14,7 +14,7 @@ import lombok.Data;
 @Entity
 @Table(name="products_stores")
 @Data
-public class ProductInStore implements Serializable {
+public class ProductInStore implements Serializable{
 
 	/**
 	 * 
@@ -33,6 +33,7 @@ public class ProductInStore implements Serializable {
     @MapsId("idStore")
     @JoinColumn(name = "idStore", insertable = false, updatable = false)
     private StoreHome store;
+    
     @Column(name="stock")
     private int stock;
     
@@ -75,16 +76,6 @@ public class ProductInStore implements Serializable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (product == null) {
-			if (other.product != null)
-				return false;
-		} else if (!product.equals(other.product))
-			return false;
-		if (store == null) {
-			if (other.store != null)
-				return false;
-		} else if (!store.equals(other.store))
-			return false;
 		return true;
 	}
 
@@ -101,7 +92,6 @@ public class ProductInStore implements Serializable {
 	public String toString() {
 		return "ProductInStore [id=" + id + ", product=" + product + ", store=" + store + ", stock=" + stock + "]";
 	}
-	
     
     
 }

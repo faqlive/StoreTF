@@ -37,7 +37,6 @@ public abstract class GenericService<T, ID extends Serializable, FK> implements 
 	public List<T> getAll(){
 		return getDao().findAll();
 	}
-	
     
 	public abstract List<T> getAllForangeKey(FK forangeKey);
 
